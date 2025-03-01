@@ -5,7 +5,7 @@ import useFetch from "./hooks/useFetch";
 
 function App() {
   const [city, setCity] = useState("");
-  const { loading, getData, data } = useFetch(city);
+  const { data, getData, loading, error } = useFetch(city);
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -21,6 +21,7 @@ function App() {
       <SearchBar onSubmit={onSubmit} onCityChange={onCityChange} city={city} />
       <GlobalStyle />
       {loading && <p>Carregando ........</p>}
+      {error && <p>{error}</p>}
       {data && <p>Dados resgatados com sucesso!</p>}
     </>
   );

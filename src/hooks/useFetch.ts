@@ -2,7 +2,7 @@ import { useState } from "react";
 
 const useFetch = (cityName: string) => {
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<"Ocorreu um erro !" | null>(null);
   const [data, setData] = useState(null);
 
   const apiId = "6df013556c712cbeb2a160ee4e0699ac";
@@ -25,6 +25,7 @@ const useFetch = (cityName: string) => {
       getWheaterInfos(city.lat, city.lon);
     } catch (error) {
       console.log(error);
+      setError("Ocorreu um erro !");
     }
     setLoading(false);
   };
@@ -37,11 +38,12 @@ const useFetch = (cityName: string) => {
       setData(json);
     } catch (error) {
       console.log(error);
+      setError("Ocorreu um erro !");
     }
     setLoading(false);
   };
 
-  return { loading, getData, data };
+  return { loading, getData, data, error };
 };
 
 export default useFetch;
