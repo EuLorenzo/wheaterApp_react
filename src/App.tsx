@@ -2,6 +2,7 @@ import { useState } from "react";
 import SearchBar from "./components/SearchBar";
 import { GlobalStyle } from "./GlobalStyle";
 import useFetch from "./hooks/useFetch";
+import DataInterface from "./components/dataInterface";
 
 function App() {
   const [city, setCity] = useState("");
@@ -22,7 +23,7 @@ function App() {
       <GlobalStyle />
       {loading && <p>Carregando ........</p>}
       {error && <p>{error}</p>}
-      {data && <p>Dados resgatados com sucesso!</p>}
+      {data && <DataInterface teste={data} />}
     </>
   );
 }

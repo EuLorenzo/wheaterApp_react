@@ -1,9 +1,10 @@
 import { useState } from "react";
+import WeatherData from "../WeatherData";
 
 const useFetch = (cityName: string) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<"Ocorreu um erro !" | null>(null);
-  const [data, setData] = useState(null);
+  const [data, setData] = useState<WeatherData | null>(null);
 
   const apiId = "6df013556c712cbeb2a160ee4e0699ac";
 
@@ -34,7 +35,7 @@ const useFetch = (cityName: string) => {
     setLoading(true);
     try {
       const res = await fetch(wheaterUrl(lat, lon));
-      const json = await res.json();
+      const json: WeatherData = await res.json();
       setData(json);
     } catch (error) {
       console.log(error);
