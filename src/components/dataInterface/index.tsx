@@ -1,11 +1,11 @@
 import WeatherData from "../../WeatherData";
 
 interface DataInterface {
-  teste: WeatherData;
+  data: WeatherData;
 }
 
-const DataInterface = ({ teste }: DataInterface) => {
-  return <div>{teste.weather[0].description}</div>;
+const DataInterface = ({ data }: DataInterface) => {
+  return <div>{data.weather[0].description}</div>;
 };
 
 export default DataInterface;

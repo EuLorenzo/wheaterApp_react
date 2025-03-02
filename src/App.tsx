@@ -23,7 +23,7 @@ function App() {
       <GlobalStyle />
       {loading && <p>Carregando ........</p>}
       {error && <p>{error}</p>}
-      {data && <DataInterface teste={data} />}
+      {data && <DataInterface data={data} />}
     </>
   );
 }

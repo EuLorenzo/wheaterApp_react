@@ -12,18 +12,31 @@ export const Container = styled.header`
 export const Form = styled.form`
   width: 100%;
 
-  input {
-    width: 100%;
-    height: 100px;
-    background-color: #3083b6;
-    font-size: 3.2em;
-    border: none;
+  label {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
     border-bottom: 1px solid #286b96;
-    color: white;
-    font-weight: 600;
-  }
 
-  input:focus {
-    outline: none;
+    input {
+      width: 100%;
+      height: 100px;
+      background-color: #3083b6;
+      font-size: 3.2em;
+      color: white;
+      border: none;
+      font-weight: 600;
+      padding-left: 15px;
+    }
+
+    input:focus {
+      outline: none;
+    }
+
+    .react-icon {
+      transition: color 0.5s ease;
+    }
   }
 `;

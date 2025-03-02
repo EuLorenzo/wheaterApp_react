@@ -24,6 +24,7 @@ const useFetch = (cityName: string) => {
       const json = await res.json();
       const city = json[0];
       getWheaterInfos(city.lat, city.lon);
+      setError(null);
     } catch (error) {
       console.log(error);
       setError("Ocorreu um erro !");
@@ -37,6 +38,7 @@ const useFetch = (cityName: string) => {
       const res = await fetch(wheaterUrl(lat, lon));
       const json: WeatherData = await res.json();
       setData(json);
+      setError(null);
     } catch (error) {
       console.log(error);
       setError("Ocorreu um erro !");
