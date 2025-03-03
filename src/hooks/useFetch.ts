@@ -6,12 +6,12 @@ const useFetch = (cityName: string) => {
   const [error, setError] = useState<string | null>(null);
   const [data, setData] = useState<WeatherData | null>(null);
 
-  const apiId = "6df013556c712cbeb2a160ee4e0699ac";
+  const apiKey = process.env.REACT_APP_API_KEY;
 
-  const geoCodeUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${apiId}`;
+  const geoCodeUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${apiKey}`;
 
   const wheaterUrl = (lat: number, lon: number) =>
-    `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiId}&lang=pt&units=metric`;
+    `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&lang=pt&units=metric`;
 
   const getData = () => {
     setData(null);
