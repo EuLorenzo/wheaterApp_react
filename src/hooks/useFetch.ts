@@ -6,7 +6,8 @@ const useFetch = (cityName: string) => {
   const [error, setError] = useState<string | null>(null);
   const [data, setData] = useState<WeatherData | null>(null);
 
-  const apiKey = process.env.REACT_APP_API_KEY;
+  //Por ser uma aplicação em Vite, muda a forma de puxar do .env
+  const apiKey = import.meta.env.VITE_API_KEY;
 
   const geoCodeUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${apiKey}`;
 
