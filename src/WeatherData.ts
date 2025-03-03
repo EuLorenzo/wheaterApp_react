@@ -40,6 +40,7 @@ interface WeatherData {
   id: number;
   name: string;
   cod: number;
+  state: string;
 }
 
 export default WeatherData;

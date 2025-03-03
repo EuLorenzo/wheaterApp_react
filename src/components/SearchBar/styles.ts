@@ -2,11 +2,8 @@ import styled from "styled-components";
 
 export const Container = styled.header`
   width: calc(100% - 20px);
-  position: fixed;
-  top: 0;
-  right: 0;
   display: flex;
-  margin: 10px 10px 0px 10px;
+  margin: 0px 10px 0px 10px;
 `;
 
 export const Form = styled.form`

@@ -3,7 +3,7 @@ import WeatherData from "../WeatherData";
 
 const useFetch = (cityName: string) => {
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<"Ocorreu um erro !" | null>(null);
+  const [error, setError] = useState<string | null>(null);
   const [data, setData] = useState<WeatherData | null>(null);
 
   const apiId = "6df013556c712cbeb2a160ee4e0699ac";
@@ -14,6 +14,7 @@ const useFetch = (cityName: string) => {
     `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiId}&lang=pt&units=metric`;
 
   const getData = () => {
+    setData(null);
     getGeoInfos();
   };
 
@@ -23,7 +24,14 @@ const useFetch = (cityName: string) => {
       const res = await fetch(geoCodeUrl);
       const json = await res.json();
       const city = json[0];
-      getWheaterInfos(city.lat, city.lon);
+
+      if (!city.state) {
+        setError("Digite uma cidade !!");
+        setLoading(false);
+        return;
+      }
+
+      getWheaterInfos(city.lat, city.lon, city.state);
       setError(null);
     } catch (error) {
       console.log(error);
@@ -32,11 +40,12 @@ const useFetch = (cityName: string) => {
     setLoading(false);
   };
 
-  const getWheaterInfos = async (lat: number, lon: number) => {
+  const getWheaterInfos = async (lat: number, lon: number, state: string) => {
     setLoading(true);
     try {
       const res = await fetch(wheaterUrl(lat, lon));
-      const json: WeatherData = await res.json();
+      const json = await res.json();
+      json.state = state;
       setData(json);
       setError(null);
     } catch (error) {

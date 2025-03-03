@@ -15,9 +15,6 @@ body {
     height: 100vh;
     padding: 0;
     margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     background-color: #3083B6;
     color: white;
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -25,5 +22,10 @@ body {
 
 h1 {
   font-size: 3.2em; 
+  margin: 0;
+}
+
+p{
+  text-align: center;
 }
 `;
