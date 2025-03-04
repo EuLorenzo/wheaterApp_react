@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Container, Form } from "./styles";
 import { IoSearch } from "react-icons/io5";
 
@@ -10,10 +10,19 @@ interface SearchBarProps {
 
 const SearchBar = ({ onSubmit, onCityChange, city }: SearchBarProps) => {
   const [onFocus, setOnFocus] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    if (inputRef.current) {
+      inputRef.current.blur();
+    }
+
+    onSubmit(e);
+  };
 
   return (
     <Container>
-      <Form onSubmit={(e) => onSubmit(e)}>
+      <Form onSubmit={(e) => handleSubmit(e)}>
         <label>
           <IoSearch
             className={"react-icon"}
@@ -27,6 +36,7 @@ const SearchBar = ({ onSubmit, onCityChange, city }: SearchBarProps) => {
             value={city}
             onFocus={() => setOnFocus(true)}
             onBlur={() => setOnFocus(false)}
+            ref={inputRef}
           />
         </label>
       </Form>

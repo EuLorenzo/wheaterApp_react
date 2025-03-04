@@ -22,6 +22,9 @@ body {
 
 h1 {
   font-size: 3.2em; 
+}
+
+h1,h2 {
   margin: 0;
 }
 

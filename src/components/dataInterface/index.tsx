@@ -1,57 +1,54 @@
 import WeatherData from "../../WeatherData";
-import { Container, NameBox, Temp, WeatherInfos, Description } from "./styles";
-import { IoIosArrowRoundUp } from "react-icons/io";
-import { IoIosArrowRoundDown } from "react-icons/io";
+import { Container, ExtraInfos, MainInfos } from "./styles";
 
 interface DataInterface {
   data: WeatherData;
 }
 
 const DataInterface = ({ data }: DataInterface) => {
+  const iconUrl = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
   const cityName = data.name;
   const stateName = data.state;
 
-  const temp_min = data.main.temp_min;
   const temp = data.main.temp;
-  const temp_max = data.main.temp_max;
+  const feelsLike = data.main.feels_like;
 
   const description = data.weather[0].description;
+
+  const wind_vel = data.wind.speed;
+
   const humidity = data.main.humidity;
-  const humidityLevel = () => {
-    if (humidity <= 30) {
-      return "Baixa umidade";
-    } else if (humidity <= 60) {
-      return "Média umidade";
-    } else {
-      return "Alta umidade";
-    }
-  };
 
   return (
     <Container>
-      <NameBox>
-        <h1>
-          {cityName} - {stateName}
-        </h1>
-      </NameBox>
+      <h1>
+        {cityName} - {stateName}
+      </h1>
 
-      <WeatherInfos>
-        <Temp>
-          <div>
-            <IoIosArrowRoundDown color="#1a4763" /> <p>{temp_min}°</p>
-          </div>
-          <div></div>
-          <div>
-            <IoIosArrowRoundUp color="#E2251A" /> <p>{temp_max}°</p>
-          </div>
-        </Temp>
+      <MainInfos>
+        <div>
+          <p>{temp}°C</p>
+          <img src={iconUrl} alt="Ícone do clima" />
+        </div>
+        <span>{description}</span>
+      </MainInfos>
 
-        <Description>
-          <h2>{description}</h2>
-          <p>Umidade: {humidity}%</p>
-          <p>{humidityLevel()}</p>
-        </Description>
-      </WeatherInfos>
+      <ExtraInfos>
+        <div>
+          <h2>Umidade</h2>
+          <p>{humidity}%</p>
+        </div>
+
+        <div>
+          <h2>Velocidade do vento</h2>
+          <p>{wind_vel} m/s</p>
+        </div>
+
+        <div>
+          <h2>Sensação térmica</h2>
+          <p>{feelsLike}°C</p>
+        </div>
+      </ExtraInfos>
     </Container>
   );
 };

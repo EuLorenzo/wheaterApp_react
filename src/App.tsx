@@ -11,6 +11,7 @@ function App() {
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     getData();
+    setCity("");
   };
 
   const onCityChange = (e: string) => {
